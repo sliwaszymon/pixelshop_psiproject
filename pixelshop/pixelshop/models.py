@@ -40,19 +40,19 @@ class Order(models.Model):
     COMPLETED = 'completed'
     CANCELED = 'canceled'
     STATUS_CHOICES = [
-        NEW,
-        IN_PROGRESS,
-        PAYMENT_RECEIVED,
-        PAYMENT_FAILED,
-        COMPLETED,
-        CANCELED,
+        (NEW, 'new'),
+        (IN_PROGRESS, 'in progress'),
+        (PAYMENT_RECEIVED, 'payment received'),
+        (PAYMENT_FAILED, 'payment failed'),
+        (COMPLETED, 'completed'),
+        (CANCELED, 'canceled'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     pixelart = models.ForeignKey(PixelArt, on_delete=models.PROTECT)
     date_purchased = models.DateTimeField()
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
-        defult=NEW,
+        default=NEW,
     )
