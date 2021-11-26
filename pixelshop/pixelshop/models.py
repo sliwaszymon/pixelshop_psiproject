@@ -2,17 +2,15 @@
 import os
 from django.db import models
 from django.conf import settings
-from django.db.models.fields.related import ForeignKey
+from django.contrib.auth.models import AbstractUser
 from djmoney.models.fields import MoneyField
 
 
-# Create your models here.
-class User(models.Model):
+class User(AbstractUser):
     """User class."""
 
-    login = models.CharField(max_length=45)
-    passwd = models.CharField(max_length=45)
-    email = models.EmailField()
+    def __str__(self):
+        return str(self.email)+" "+str(self.username)
 
 
 class PixelArt(models.Model):
@@ -30,29 +28,32 @@ class PixelArt(models.Model):
     )
     certificate_id = models.CharField(max_length=128)
 
+    def __str__(self):
+        return str(self.title)+" "+str(self.price)
 
-class Order(models.Model):
-    """Order class."""
+
+class OrderStatus(models.TextChoices):
+    """OrderStatus choices class."""
+
     NEW = 'new'
     IN_PROGRESS = 'in_progres'
     PAYMENT_RECEIVED = 'payment_received'
     PAYMENT_FAILED = 'payment_failed'
     COMPLETED = 'completed'
     CANCELED = 'canceled'
-    STATUS_CHOICES = [
-        (NEW, 'new'),
-        (IN_PROGRESS, 'in progress'),
-        (PAYMENT_RECEIVED, 'payment received'),
-        (PAYMENT_FAILED, 'payment failed'),
-        (COMPLETED, 'completed'),
-        (CANCELED, 'canceled'),
-    ]
+
+
+class Order(models.Model):
+    """Order class."""
 
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     pixelart = models.ForeignKey(PixelArt, on_delete=models.PROTECT)
     date_purchased = models.DateTimeField()
     status = models.CharField(
         max_length=20,
-        choices=STATUS_CHOICES,
-        default=NEW,
+        choices=OrderStatus.choices,
+        default='new',
     )
+
+    def __str__(self):
+        return str(self.pixelart)+" - "+str(self.user)+" - "+str(self.date_purchased)+"   "+str(self.status)
