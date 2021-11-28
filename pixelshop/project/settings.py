@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pixelshop.apps.PixelshopConfig',
-    'api.apps.ApiConfig',
     'rest_framework',
     'djmoney',
 ]
