@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
+from django.contrib.admin.views.decorators import staff_member_required
+from decorator_include import decorator_include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pixelart/', include('pixelshop.urls'))
+    path('pixelart/', include('pixelshop.urls')),
+    path('api/', decorator_include(staff_member_required, 'api.urls')),
 ]

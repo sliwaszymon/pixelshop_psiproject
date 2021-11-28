@@ -27,6 +27,8 @@ SECRET_KEY = 'django-insecure-tp51-p)ap4l+9pg-@_ypm-e-pc5-o+^%8ks22*d0pe*6y&6)ki
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+AUTH_USER_MODEL = 'pixelshop.User'
+
 
 
 # Application definition
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pixelshop.apps.PixelshopConfig',
+    'api.apps.ApiConfig',
     'rest_framework',
     'djmoney',
 ]

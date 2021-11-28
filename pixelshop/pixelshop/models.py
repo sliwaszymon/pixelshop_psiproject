@@ -9,6 +9,10 @@ from djmoney.models.fields import MoneyField
 class User(AbstractUser):
     """User class."""
 
+    class Meta:
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+
     def __str__(self):
         return str(self.email)+" "+str(self.username)
 

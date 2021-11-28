@@ -2,3 +2,4 @@ Django==3.2
 djangorestframework==3.12.4
 django-money==2.1
 mysqlclient==2.1.0
+django-decorator-include==3.0
