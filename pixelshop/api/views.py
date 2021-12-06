@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework import generics
 from .serializers import UserSerializer, OrderSerializer, PixelArtSerializer
 from pixelshop.models import User, Order, PixelArt
+from .filters import PriceFilter
 
 # main api view
 @api_view(['GET'])
@@ -193,6 +194,7 @@ def apiOverview(request):
 #     except PixelArt.DoesNotExist:
 #         return Response("Nie istnieje PixelArt z takim kluczem głównym.")
 
+
 class UserListView(generics.ListCreateAPIView):
     """UserListView class. You can see all users and also you can create new one."""
     queryset = User.objects.filter()
@@ -202,8 +204,13 @@ class UserListView(generics.ListCreateAPIView):
     search_fields = ['username', 'first_name', 'last_name', 'email']
     ordering_fields = ['date_joined', 'last_login']
 
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-class PixelArtListView(generics.ListCreateAPIView):
+
+class PixelArtListView(generics.ListCreateAPIView, PriceFilter):
     """PixelArtListView class. You can see all pixelarts and also you can create new one."""
     queryset = PixelArt.objects.filter()
     serializer_class = PixelArtSerializer
@@ -211,6 +218,11 @@ class PixelArtListView(generics.ListCreateAPIView):
     filter_fields = ['title', 'price']
     search_fields = ['title', 'certificate_id', 'desc']
     ordering_fields = ['price']
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class OrderListView(generics.ListCreateAPIView):
@@ -221,3 +233,8 @@ class OrderListView(generics.ListCreateAPIView):
     filter_fields = ['status']
     search_fields = ['user', 'pixelart']
     ordering_fields = ['date_purchased']
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
