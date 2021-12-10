@@ -19,8 +19,11 @@ from django.urls import path
 from django.contrib.admin.views.decorators import staff_member_required
 from decorator_include import decorator_include
 
+from pixelshop.views import HomePageView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pixelart/', include('pixelshop.urls')),
     path('api/', decorator_include(staff_member_required, 'api.urls')),
+    path('', HomePageView.as_view(), name='homepage'),
 ]
