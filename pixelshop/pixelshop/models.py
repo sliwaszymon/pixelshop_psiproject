@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from djmoney.models.fields import MoneyField
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -16,6 +17,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.email)+" "+str(self.username)
+
+    def get_absolute_url(self):
+        return reverse('user-detail', kwargs={'pk': self.pk})
 
 
 class PixelArt(models.Model):
@@ -39,6 +43,9 @@ class PixelArt(models.Model):
 
     def __str__(self):
         return str(self.title)+" "+str(self.price)
+
+    def get_absolute_url(self):
+        return reverse('pixelart-detail', kwargs={'pk': self.pk})
 
 
 class OrderStatus(models.TextChoices):
@@ -71,3 +78,6 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.pixelart)+" - "+str(self.user)+" - "+str(self.date_purchased)+"   "+str(self.status)
+
+    def get_absolute_url(self):
+        return reverse('order-detail', kwargs={'pk': self.pk})
