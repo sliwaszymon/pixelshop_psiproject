@@ -4,35 +4,35 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                      <label for="id_email" class="form-label">Adres Email</label>
-                      <input type="email" name="email" maxlength="254" class="form-control" id="id_email" aria-describedby="emailHelp">
-                      <div id="emailHelp" class="form-text">Nie udostępniamy nikomu twojego Emaila.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_username" class="form-label">Nazwa użytkownika</label>
-                        <input type="text" name="username" maxlength="150" class="form-control" id="id_username">
-                    </div>
-                    <div class="mb-3">
-                      <label for="id_password" class="form-label">Hasło</label>
-                      <input type="password" maxlength="128" class="form-control" id="id_passwprd">
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_first_name" class="form-label">Imie</label>
-                        <input type="text" name="first_name" maxlength="150" class="form-control" id="id_first_name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="id_last_name" class="form-label">Nazwisko</label>
-                        <input type="text" name="last_name" maxlength="150" class="form-control" id="id_last_name">
-                    </div>
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Potwierdzam, że zapoznałem się z <a href="">regulaminem</a>.</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Zarejestruj</button>
-                  </form>
+              <form method="post">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="id_email" class="form-label">Adres Email</label>
+                    <input type="email" name="email" maxlength="254" class="form-control" id="id_email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Nie udostępniamy nikomu twojego Emaila.</div>
+                  </div>
+                  <div class="mb-3">
+                      <label for="id_username" class="form-label">Nazwa użytkownika</label>
+                      <input type="text" name="username" maxlength="150" class="form-control" id="id_username">
+                  </div>
+                  <div class="mb-3">
+                    <label for="id_password" class="form-label">Hasło</label>
+                    <input type="password" name="password" maxlength="128" class="form-control" id="id_password">
+                  </div>
+                  <div class="mb-3">
+                      <label for="id_first_name" class="form-label">Imie</label>
+                      <input type="text" name="first_name" maxlength="150" class="form-control" id="id_first_name">
+                  </div>
+                  <div class="mb-3">
+                      <label for="id_last_name" class="form-label">Nazwisko</label>
+                      <input type="text" name="last_name" maxlength="150" class="form-control" id="id_last_name">
+                  </div>
+                  <!-- <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="acceptRegulation">
+                    <label class="form-check-label" for="acceptRegulation">Potwierdzam, że zapoznałem się z <a href="">regulaminem</a>.</label>
+                  </div> -->
+                  <input type="submit" class="btn btn-primary" value="Zarejestruj">
+                </form>
             </div>
         </div>
     </div>

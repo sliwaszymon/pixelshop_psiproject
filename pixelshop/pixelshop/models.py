@@ -19,8 +19,8 @@ class User(AbstractUser):
         return str(self.email)+" "+str(self.username)
 
     def get_absolute_url(self):
-        return reverse('user-detail', kwargs={'pk': self.pk})
-
+        # return reverse('profile', kwargs={'pk': self.pk})
+        return reverse('homepage')
 
 class PixelArt(models.Model):
     """PixelArt class."""

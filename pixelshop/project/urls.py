@@ -23,7 +23,7 @@ from pixelshop.views import HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pixelart/', include('pixelshop.urls')),
+    path('pixelshop/', include('pixelshop.urls')),
     path('api/', decorator_include(staff_member_required, 'api.urls')),
     path('', HomePageView.as_view(), name='homepage'),
 ]
