@@ -1,24 +1,33 @@
 """Models module."""
 import os
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from djmoney.models.fields import MoneyField
+from django.urls import reverse
 
 
 class User(AbstractUser):
     """User class."""
 
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+
     def __str__(self):
         return str(self.email)+" "+str(self.username)
 
+    def get_absolute_url(self):
+        # return reverse('profile', kwargs={'pk': self.pk})
+        return reverse('homepage')
 
 class PixelArt(models.Model):
     """PixelArt class."""
 
     title = models.CharField(max_length=50)
     desc = models.CharField(max_length=200)
-    file = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'images'))
+    file = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'static/images'))
     price = MoneyField(
         verbose_name='Cena',
         max_digits=14,
@@ -28,8 +37,15 @@ class PixelArt(models.Model):
     )
     certificate_id = models.CharField(max_length=128)
 
+    class Meta:
+        verbose_name = _('pixelart')
+        verbose_name_plural = _('pixelarts')
+
     def __str__(self):
         return str(self.title)+" "+str(self.price)
+
+    def get_absolute_url(self):
+        return reverse('pixelart-detail', kwargs={'pk': self.pk})
 
 
 class OrderStatus(models.TextChoices):
@@ -55,5 +71,13 @@ class Order(models.Model):
         default='new',
     )
 
+    class Meta:
+        verbose_name = _('order')
+        verbose_name_plural = _('orders')
+    
+
     def __str__(self):
         return str(self.pixelart)+" - "+str(self.user)+" - "+str(self.date_purchased)+"   "+str(self.status)
+
+    def get_absolute_url(self):
+        return reverse('order-detail', kwargs={'pk': self.pk})
