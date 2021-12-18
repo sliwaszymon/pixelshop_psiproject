@@ -1,7 +1,0 @@
-Django==3.2
-djangorestframework==3.12.4
-django-money==2.1
-mysqlclient==2.1.0
-django-decorator-include==3.0
-django-filter==21.1
-alt_profanity_check==1.0.1
