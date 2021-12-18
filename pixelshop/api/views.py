@@ -26,7 +26,7 @@ class ApiIndexView(GenericAPIView):
 
 class UserListView(generics.ListCreateAPIView):
     """UserListView class. You can see all users and also you can create new one."""
-    queryset = User.objects.filter()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     name = 'user-list'
     filter_fields = ['username', 'last_name', 'email', 'is_active', 'is_staff', 'is_superuser']
@@ -37,7 +37,7 @@ class UserListView(generics.ListCreateAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = UserSerializer(queryset, context={'request': request}, many=True)
+            serializer = UserSerializer(page, context={'request': request}, many=True)
             return self.get_paginated_response(serializer.data)
         serializer = UserSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
@@ -62,7 +62,7 @@ class PixelArtListView(generics.ListCreateAPIView, PriceFilter):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = PixelArtSerializer(queryset, context={'request': request},  many=True)
+            serializer = PixelArtSerializer(page, context={'request': request},  many=True)
             return self.get_paginated_response(serializer.data)
         serializer = PixelArtSerializer(queryset, context={'request': request},  many=True)
         return Response(serializer.data)
@@ -87,7 +87,7 @@ class OrderListView(generics.ListCreateAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
         if page is not None:
-            serializer = OrderSerializer(queryset, context={'request': request}, many=True)
+            serializer = OrderSerializer(page, context={'request': request}, many=True)
             return self.get_paginated_response(serializer.data)
         serializer = OrderSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
