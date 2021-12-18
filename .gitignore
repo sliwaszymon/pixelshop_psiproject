@@ -1,3 +1,4 @@
 pixelshop/*/__pycache__
 pixelshop/*/*/__pycache__
 pixelshop/*/migrations
+.venv
