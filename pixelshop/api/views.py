@@ -34,7 +34,11 @@ class UserListView(generics.ListCreateAPIView):
     ordering_fields = ['date_joined', 'last_login']
 
     def list(self, request):
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = UserSerializer(queryset, context={'request': request}, many=True)
+            return self.get_paginated_response(serializer.data)
         serializer = UserSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
@@ -55,7 +59,11 @@ class PixelArtListView(generics.ListCreateAPIView, PriceFilter):
     ordering_fields = ['price']
 
     def list(self, request):
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = PixelArtSerializer(queryset, context={'request': request},  many=True)
+            return self.get_paginated_response(serializer.data)
         serializer = PixelArtSerializer(queryset, context={'request': request},  many=True)
         return Response(serializer.data)
 
@@ -76,7 +84,11 @@ class OrderListView(generics.ListCreateAPIView):
     ordering_fields = ['date_purchased']
 
     def list(self, request):
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = OrderSerializer(queryset, context={'request': request}, many=True)
+            return self.get_paginated_response(serializer.data)
         serializer = OrderSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer.data)
 
