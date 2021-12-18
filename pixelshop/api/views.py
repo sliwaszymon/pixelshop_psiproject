@@ -1,17 +1,13 @@
-from django.db.models import query
-from django.shortcuts import render
-from django.http import JsonResponse, response
-from rest_framework import serializers
-from rest_framework.decorators import api_view
+"""Rest API Views file."""
+
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView
 from rest_framework import generics
 from rest_framework.reverse import reverse
 
 from .serializers import UserSerializer, OrderSerializer, PixelArtSerializer
 from pixelshop.models import User, Order, PixelArt
-from .filters import PriceFilter
+from .filters import PixelArtFilter
 
 
 class ApiIndexView(GenericAPIView):
@@ -49,12 +45,12 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     name = 'user-detail'
 
 
-class PixelArtListView(generics.ListCreateAPIView, PriceFilter):
+class PixelArtListView(generics.ListCreateAPIView, PixelArtFilter):
     """PixelArtListView class. You can see all pixelarts and also you can create new one."""
     queryset = PixelArt.objects.filter()
     serializer_class = PixelArtSerializer
     name = 'pixelart-list'
-    filter_fields = ['title', 'price']
+    filter_class = PixelArtFilter
     search_fields = ['title', 'certificate_id', 'desc']
     ordering_fields = ['price']
 
