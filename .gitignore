@@ -1,7 +1,3 @@
-pixelshop\pixelshop\__pycache__
-pixelshop\pixelshop\migrations
-pixelshop\api\__pycache__
-pixelshop\api\migrations
-pixelshop\project\__pycache__
-pixelshop\project\migrations
+pixelshop/**/__pycache__
+pixelshop/**/migrations
 .venv
