@@ -1,6 +1,6 @@
 """Pixelshop urls file."""
 
-from django.urls import path
+from django.urls import path, include
 from .views import HomePageView, ProfileView, RegisterView
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('contact/', HomePageView.as_view(), name='contact'),
     path('aboutus/', HomePageView.as_view(), name='aboutus'),
     path('profile/<pk>/', ProfileView.as_view(), name='profile'),
-    path('register/', RegisterView.as_view(), name='registration')
+    path('register/', RegisterView.as_view(), name='registration'),
+    path('authenticate/', include('django.contrib.auth.urls'))
 ]

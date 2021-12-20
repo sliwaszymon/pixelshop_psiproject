@@ -8,24 +8,27 @@
       <div class="collapse navbar-collapse" id="navbarsExample07XL">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">SKLEP</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'shop' %}">SKLEP</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">WIĘCEJ</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-              <li><a class="dropdown-item" href="#">O NAS</a></li>
-              <li><a class="dropdown-item" href="#">KONTAKT</a></li>
+              <li><a class="dropdown-item" href="{% url 'aboutus' %}">O NAS</a></li>
+              <li><a class="dropdown-item" href="{% url 'contact' %}">KONTAKT</a></li>
             </ul>
           </li>
         </ul>
         <ul class="navbar-nav mb-2 mb-lg-0">
           {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">{{ request.user.username }}</a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">PROFIL</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-                  <li><a class="dropdown-item" href="#">EDYTUJ PROFIL</a></li>
+                  <li><a class="dropdown-item" href="{% url 'profile' pk=request.user.pk %}">EDYTUJ PROFIL</a></li>
                   <li><a class="dropdown-item" href="#">HISTORIA ZAKUPÓW</a></li>
-                  <li><a class="dropdown-item" href="#">WYLOGUJ</a></li>
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">WYLOGUJ</a></li>
                 </ul>
               </li>
           {% else %}
@@ -33,7 +36,7 @@
               <a class="nav-link active" aria-current="page" href="{% url 'registration' %}">ZAREJESTRUJ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">ZALOGUJ</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'login' %}">ZALOGUJ</a>
             </li>
           {% endif %}
         </ul>
