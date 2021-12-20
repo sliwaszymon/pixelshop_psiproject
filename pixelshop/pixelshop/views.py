@@ -1,6 +1,5 @@
-from django.db.models.base import Model
-from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.views.generic.edit import UpdateView
 from .models import PixelArt, User
 
 
@@ -11,6 +10,11 @@ class HomePageView(TemplateView):
 class ProfileView(DetailView):
     template_name = 'profile.html'
     model = User
+
+class ProfileUpdateView(UpdateView):
+    model = User
+    fields = ['email', 'first_name', 'last_name']
+    template_name = 'profile_update.html'
 
 class RegisterView(CreateView):
     template_name = 'registration/register.html'
