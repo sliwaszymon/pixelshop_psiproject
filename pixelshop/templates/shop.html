@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
+        {% for pixelart in object_list %}
+        <div class="row">
+            <div class="col-12">
+                {{ pixelart }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

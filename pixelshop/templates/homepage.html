@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     {% include 'navbar.html' %}
+    <link rel="stylesheet" type="text/css" href="{% static '/website/css/homepage.css' %}">
+    <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <h1>Witaj w Pixelshopie!</h1>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <p class="subtitle">Jeżeli chcesz dowiedzieć się o nas więcej zapraszamy do zakładki O NAS :)</p>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
 {% endblock content %}
