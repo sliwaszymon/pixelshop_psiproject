@@ -2,56 +2,56 @@
 {% load simple_tags %}
 {% block content %}
     {% include 'navbar.html' %}
-    <div class="container mt-5">
+    <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
         {% with userpk=request.get_full_path|get_pk %}
-        {% if userpk == request.user.pk %}
-        <div class="row">
-            <div class="col-6">
-                <p>Imie:</p>
-            </div>
-            <div class="col-6">
-                {{ object.first_name }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <p>Nazwisko:</p>
-            </div>
-            <div class="col-6">
-                {{ object.last_name }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <p>Nazwa użytkownika:</p>
-            </div>
-            <div class="col-6">
-                {{ object.username }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <p>Adres Email:</p>
-            </div>
-            <div class="col-6">
-                {{ object.email }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <p>Hasło:</p>
-            </div>
-            <div class="col-6">
-                {{ object.password }}
-            </div>
-        </div>
-        {% else %}
-        <div class="row">
-            <div class="col-12">
-                <p>Cwany jesteś, ale nic tu nie znajdziesz :)</p>
-            </div>
-        </div>
-        {% endif %}
+            {% if userpk == request.user.pk %}
+                <div class="row">
+                    <div class="col-6">
+                        <p>Imie:</p>
+                    </div>
+                    <div class="col-6">
+                        {{ object.first_name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Nazwisko:</p>
+                    </div>
+                    <div class="col-6">
+                        {{ object.last_name }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Nazwa użytkownika:</p>
+                    </div>
+                    <div class="col-6">
+                        {{ object.username }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Adres Email:</p>
+                    </div>
+                    <div class="col-6">
+                        {{ object.email }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Hasło:</p>
+                    </div>
+                    <div class="col-6">
+                        {{ object.password }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-12">
+                        <p>Cwany jesteś, ale nic tu nie znajdziesz :)</p>
+                    </div>
+                </div>
+            {% endif %}
         {% endwith %}
     </div>
 {% endblock content %}
