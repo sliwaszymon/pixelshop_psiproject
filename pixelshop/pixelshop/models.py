@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from djmoney.models.fields import MoneyField
 from django.urls import reverse
+from django.contrib.auth.hashers import make_password
 
 
 class User(AbstractUser):
@@ -17,10 +18,14 @@ class User(AbstractUser):
 
     def __str__(self):
         return str(self.email)+" "+str(self.username)
+    
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         # return reverse('profile', kwargs={'pk': self.pk})
-        return reverse('homepage')
+        return reverse('homepage') # taki myk żeby po rejestracji przekierowywało na stronę główną
 
 class PixelArt(models.Model):
     """PixelArt class."""

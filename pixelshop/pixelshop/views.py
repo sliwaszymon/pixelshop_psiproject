@@ -15,4 +15,4 @@ class ProfileView(DetailView):
 class RegisterView(CreateView):
     template_name = 'register.html'
     model = User
-    fields = ['email', 'username', 'password', 'first_name', 'last_name', ]
+    fields = ['email', 'username', 'password', 'first_name', 'last_name']
