@@ -1,45 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Ninth navbar example">
-    <div class="container-xl">
-      <a class="navbar-brand" href="{% url 'homepage' %}">PIXELSHOP</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+{% load static %}
 
-      <div class="collapse navbar-collapse" id="navbarsExample07XL">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'shop' %}">SKLEP</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">WIĘCEJ</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-              <li><a class="dropdown-item" href="{% url 'aboutus' %}">O NAS</a></li>
-              <li><a class="dropdown-item" href="{% url 'contact' %}">KONTAKT</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          {% if request.user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">{{ request.user.username }}</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown07XL" data-bs-toggle="dropdown" aria-expanded="false">PROFIL</a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown07XL">
-                  <li><a class="dropdown-item" href="{% url 'profile' pk=request.user.pk %}">POKAŻ PROFIL</a></li>
-                  <li><a class="dropdown-item" href="#">HISTORIA ZAKUPÓW</a></li>
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">WYLOGUJ</a></li>
-                </ul>
-              </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'registration' %}">ZAREJESTRUJ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'login' %}">ZALOGUJ</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
+<link rel="stylesheet" type="text/css" href="{% static '/website/css/navbar.css' %}">
+
+<div class="sidebar">
+  <div class="logo_content">
+    <div class="logo">
+      <i class='bx bxl-python' ></i>
+      <div class="logo_name">PIXELSHOP</div>
     </div>
-  </nav>
+    <i class='bx bx-menu' id="btn"></i>
+  </div>
+  <ul class="nav_list">
+    <li>
+      <a href="{% url 'homepage' %}">
+        <i class='bx bx-home-alt' ></i>
+        <span class="links_name">Strona Glowna</span>
+      </a>
+      <span class="tooltip">Strona Glowna</span>
+    </li>
+    <li>
+      <a href="{% url 'shop' %}">
+        <i class='bx bx-store' ></i>
+        <span class="links_name">Sklep</span>
+      </a>
+      <span class="tooltip">Sklep</span>
+    </li>
+    <li>
+      <a href="{% url 'aboutus' %}">
+        <i class='bx bx-info-circle' ></i>
+        <span class="links_name">O nas</span>
+      </a>
+      <span class="tooltip">O nas</span>
+    </li>
+    <li>
+      <a href="{% url 'contact' %}">
+        <i class='bx bxs-contact' ></i>
+        <span class="links_name">Kontakt</span>
+      </a>
+      <span class="tooltip">Kontakt</span>
+    </li>
+    <li>
+      <a href="{% url 'profile' pk=request.user.pk %}">
+        <i class='bx bxs-user-detail' ></i>
+        <span class="links_name">Profil</span>
+      </a>
+      <span class="tooltip">Profil</span>
+    </li>
+  </ul>
+  <div class="profile_content">
+    <div class="profile">
+      {% if request.user.is_authenticated %}
+      <div class="profile_details">
+        <i class='bx bxs-user' ></i>
+        <div class="logged_user_details">
+          <div class="name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+          {% if request.user.is_superuser %}
+          <div class="role">Admin</div>
+          {% elif request.user.is_staff %}
+          <div class="role">Staff</div>
+          {% else %}
+          <div class="role">User</div>
+          {% endif %}
+        </div>
+      </div>
+      <a href="{% url 'logout' %}"><i class='bx bx-log-out' id="log_in_out"></i></a>
+      {% else %}
+      <a href="{% url 'login' %}"><i class='bx bx-log-in' id="log_in_out"></i></a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% block extra_js %}
+<script src="{% static '/website/js/navbar.js' %}" type="text/javascript"></script>
+{% endblock extra_js %}
