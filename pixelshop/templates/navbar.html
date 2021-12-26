@@ -39,6 +39,7 @@
       </a>
       <span class="tooltip">Kontakt</span>
     </li>
+    {% if request.user.is_authenticated %}
     <li>
       <a href="{% url 'profile' pk=request.user.pk %}">
         <i class='bx bxs-user-detail' ></i>
@@ -46,6 +47,7 @@
       </a>
       <span class="tooltip">Profil</span>
     </li>
+    {% endif %}
   </ul>
   <div class="profile_content">
     <div class="profile">
