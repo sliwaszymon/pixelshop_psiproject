@@ -4,19 +4,19 @@
     {% include 'navbar.html' %}
     <link rel="stylesheet" type="text/css" href="{% static '/website/css/shop.css' %}">
     <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
-          {% for object in object_list %}
-            <div class="row">
-                <div class="col-sm-6 col-lg-3 col-md-4">
-                    <div class="card">
-                      <img class="card-img-top" src="{{ object.file }}????" alt="Card image cap">
-                      <div class="card-body">
-                        <h5 class="card-title">{{ object.title }} - {{ object.price }}</h5>
-                        <p class="card-text">{{ object.desc }}</p>
-                        <a href="#" class="btn btn-primary">KUP</a>
-                      </div>
-                    </div>
-                  </div>
+      <div class="row">
+        {% for object in object_list %}
+          <div class="col-sm-6 col-lg-3 col-md-4 m-10">
+              <div class="card">
+                <img class="card-img-top" src="{{ object.file }}????" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ object.title }} - {{ object.price }}</h5>
+                  <p class="card-text">{{ object.desc }}</p>
+                  <a href="#" class="btn btn-primary">KUP</a>
+                </div>
+              </div>
             </div>
-            {% endfor %}
+          {% endfor %}
+      </div>     
     </div>
 {% endblock content %}
