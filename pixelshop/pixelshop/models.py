@@ -32,7 +32,7 @@ class PixelArt(models.Model):
 
     title = models.CharField(max_length=50)
     desc = models.CharField(max_length=200)
-    file = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'static/images'))
+    file = models.FilePathField(path=os.path.join(settings.LOCAL_FILE_DIR, 'static\images'))
     price = MoneyField(
         verbose_name='Cena',
         max_digits=14,
