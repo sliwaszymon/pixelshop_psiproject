@@ -3,20 +3,23 @@
 {% block content %}
     {% include 'navbar.html' %}
     <link rel="stylesheet" type="text/css" href="{% static '/website/css/shop.css' %}">
-    <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
+    <div class="content-shop">
+      <div class="container-fluid">
       <div class="row">
         {% for object in object_list %}
-          <div class="col-sm-6 col-lg-3 col-md-4 m-10">
+          <div class="col-6 col-sm-6 col-lg-4 col-md-6 col-xl-3">
               <div class="card">
-                <img class="card-img-top" src="{{ object.file }}????" alt="Card image cap">
+                <img class="card-img-top" src="{% static '/images/400.png' %}" alt="Card image cap">
                 <div class="card-body">
-                  <h5 class="card-title">{{ object.title }} - {{ object.price }}</h5>
+                  <h5 class="card-title">{{ object.title }}</h5>
+                  <h6 class="card-price">{{ object.price }}</h6>
                   <p class="card-text">{{ object.desc }}</p>
                   <a href="#" class="btn btn-primary">KUP</a>
                 </div>
               </div>
             </div>
           {% endfor %}
-      </div>     
+      </div>
     </div>
+  </div>
 {% endblock content %}
