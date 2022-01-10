@@ -13,6 +13,7 @@ body{
     background: #11101d;
     padding: 6px 14px;
     transition: all 0.5s ease;
+    z-index: 1;
 }
 .sidebar.active{
     width: 240px;
@@ -91,9 +92,11 @@ body{
     display: none;
 }
 .sidebar ul li:hover .tooltip{
+    position: absolute;
     transition: all 0.5s ease;
     opacity: 1;
     top: 50%;
+    z-index: 1;
 }
 .sidebar ul li a{
     color: #fff;
