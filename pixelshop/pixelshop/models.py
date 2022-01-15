@@ -1,5 +1,6 @@
 """Models module."""
 import os
+import hashlib
 from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.conf import settings
@@ -44,6 +45,10 @@ class PixelArt(models.Model):
     def __str__(self):
         return f"{self.title} {self.price}"
 
+    def save(self, *args, **kwargs):
+        certid = hashlib.sha256(b'{self.title}{self.desc}').hexdigest()
+        self.certificate_id = certid
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('pixelart-detail', kwargs={'pk': self.pk})
