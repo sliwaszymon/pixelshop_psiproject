@@ -17,15 +17,10 @@ class User(AbstractUser):
         verbose_name_plural = _('users')
 
     def __str__(self):
-        return str(self.email)+" "+str(self.username)
-    
-    def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
-        super().save(*args, **kwargs)
+        return f"{self.email} {self.username}"
 
     def get_absolute_url(self):
-        # return reverse('profile', kwargs={'pk': self.pk})
-        return reverse('homepage') # taki myk żeby po rejestracji przekierowywało na stronę główną
+        return reverse('user-detail', kwargs={'pk': self.pk})
 
 class PixelArt(models.Model):
     """PixelArt class."""
@@ -47,7 +42,8 @@ class PixelArt(models.Model):
         verbose_name_plural = _('pixelarts')
 
     def __str__(self):
-        return str(self.title)+" "+str(self.price)
+        return f"{self.title} {self.price}"
+
 
     def get_absolute_url(self):
         return reverse('pixelart-detail', kwargs={'pk': self.pk})
@@ -82,7 +78,7 @@ class Order(models.Model):
     
 
     def __str__(self):
-        return str(self.pixelart)+" - "+str(self.user)+" - "+str(self.date_purchased)+"   "+str(self.status)
+        return f"{self.pixelart} - {self.user} - {self.date_purchased} - {self.status}"
 
     def get_absolute_url(self):
         return reverse('order-detail', kwargs={'pk': self.pk})

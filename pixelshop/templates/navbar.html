@@ -19,21 +19,21 @@
       <span class="tooltip">Strona Glowna</span>
     </li>
     <li>
-      <a href="{% url 'shop' %}">
+      <a href="{% url 'pixelshop:shop' %}">
         <i class='bx bx-store' ></i>
         <span class="links_name">Sklep</span>
       </a>
       <span class="tooltip">Sklep</span>
     </li>
     <li>
-      <a href="{% url 'aboutus' %}">
+      <a href="{% url 'pixelshop:aboutus' %}">
         <i class='bx bx-info-circle' ></i>
         <span class="links_name">O nas</span>
       </a>
       <span class="tooltip">O nas</span>
     </li>
     <li>
-      <a href="{% url 'contact' %}">
+      <a href="{% url 'pixelshop:contact' %}">
         <i class='bx bxs-contact' ></i>
         <span class="links_name">Kontakt</span>
       </a>
@@ -41,11 +41,20 @@
     </li>
     {% if request.user.is_authenticated %}
     <li>
-      <a href="{% url 'profile' pk=request.user.pk %}">
+      <a href="{% url 'pixelshop:profile' pk=request.user.pk %}">
         <i class='bx bxs-user-detail' ></i>
         <span class="links_name">Profil</span>
       </a>
       <span class="tooltip">Profil</span>
+    </li>
+    {% endif %}
+    {% if request.user.is_superuser %}
+    <li>
+      <a href="{% url 'api:root-api' %}">
+        <i class='bx bx-data' ></i>
+        <span class="links_name">Api</span>
+      </a>
+      <span class="tooltip">Api</span>
     </li>
     {% endif %}
   </ul>
@@ -65,9 +74,9 @@
           {% endif %}
         </div>
       </div>
-      <a href="{% url 'logout' %}"><i class='bx bx-log-out' id="log_in_out"></i></a>
+      <a href="{% url 'pixelshop:logout' %}"><i class='bx bx-log-out' id="log_in_out"></i></a>
       {% else %}
-      <a href="{% url 'login' %}"><i class='bx bx-log-in' id="log_in_out"></i></a>
+      <a href="{% url 'pixelshop:login' %}"><i class='bx bx-log-in' id="log_in_out"></i></a>
       {% endif %}
     </div>
   </div>

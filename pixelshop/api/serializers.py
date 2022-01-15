@@ -9,7 +9,8 @@ from profanity_check import predict as profanity_predict
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     """User serializer class."""
-    url = serializers.HyperlinkedIdentityField(view_name = "user-detail")
+    
+    url = serializers.HyperlinkedIdentityField(view_name = "api:user-detail", lookup_field='pk')
 
     def validate_username(self, value):
         if profanity_predict([value])[0] > 0:
@@ -67,11 +68,13 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'password', 
             'last_login', 
             'is_active'
-        ]
+        ] 
 
 
 class PixelArtSerializer(serializers.HyperlinkedModelSerializer):
     """PixelArt serializer class."""
+    
+    url = serializers.HyperlinkedIdentityField(view_name="api:pixelart-detail", lookup_field='pk')
 
     def validate_title(self, value):
         if profanity_predict([value])[0] > 0:
@@ -94,6 +97,10 @@ class PixelArtSerializer(serializers.HyperlinkedModelSerializer):
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     """Order serializer class."""
+    
+    url = serializers.HyperlinkedIdentityField(view_name="api:order-detail", lookup_field='pk')
+    user = serializers.HyperlinkedRelatedField(lookup_field="pk", many=False, view_name='api:user-detail', read_only=True)
+    pixelart = serializers.HyperlinkedRelatedField(lookup_field="pk", many=False, view_name='api:pixelart-detail', read_only=True)
     
     def validate_date_purchased(self, value):
         if value.replace(tzinfo=UTC) > dt.now().replace(tzinfo=UTC):
