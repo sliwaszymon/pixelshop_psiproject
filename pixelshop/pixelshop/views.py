@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import UpdateView
@@ -25,6 +26,8 @@ def registerView(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, f"Konto dla użytkownika {user} zostało stworzone pomyślnie!")
             return redirect('pixelshop:login')
 
     context = {'form': form}

@@ -19,6 +19,9 @@
                   <input type="submit" class="btn btn-primary" value="Zaloguj"> <!-- disabled -->
                   <a href="{% url 'pixelshop:registration' %}">Nie masz jeszcze konta? Zarejestruj się!</a>
                 </form>
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">{{ message }}</div>
+                {% endfor %}
             </div>
         </div>
     </div>
