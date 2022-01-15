@@ -14,9 +14,9 @@ class ApiIndexView(GenericAPIView):
     name = 'root-api'
     def get(self, request, *args, **kwargs):
         return Response({
-            'users': reverse(UserListView.name, request=request),
-            'pixelarts': reverse(PixelArtListView.name, request=request),
-            'orders': reverse(OrderListView.name, request=request)
+            'users': reverse(f"api:{UserListView.name}", request=request),
+            'pixelarts': reverse(f"api:{PixelArtListView.name}", request=request),
+            'orders': reverse(f"api:{OrderListView.name}", request=request)
         })
 
 

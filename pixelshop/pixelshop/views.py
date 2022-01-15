@@ -1,9 +1,11 @@
-from django.views.generic import TemplateView, CreateView, DetailView, ListView
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import UpdateView
 from .models import PixelArt, User
+from .forms import RegisterForm
 
 
-# Create your views here.
 class HomePageView(TemplateView):
     template_name = 'homepage.html'
 
@@ -16,10 +18,21 @@ class ProfileUpdateView(UpdateView):
     fields = ['email', 'first_name', 'last_name']
     template_name = 'profile_update.html'
 
-class RegisterView(CreateView):
+def registerView(request):
     template_name = 'registration/register.html'
-    model = User
-    fields = ['email', 'username', 'password', 'first_name', 'last_name']
+    form = RegisterForm()
+
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, f"Konto dla użytkownika {user} zostało stworzone pomyślnie!")
+            return redirect('pixelshop:login')
+
+    context = {'form': form}
+    return render(request, template_name, context)
+
 
 class ContactView(TemplateView):
     template_name = 'contact.html'
