@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static simple_tags %}
 {% block content %}
     {% include 'navbar.html' %}
     <link rel="stylesheet" type="text/css" href="{% static '/website/css/shop.css' %}">
@@ -9,7 +9,7 @@
         {% for object in object_list %}
           <div class="col-6 col-sm-6 col-lg-4 col-md-6 col-xl-3">
               <div class="card">
-                <img class="card-img-top" src="{% static '/images/400.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{{ object.file|redirect_slashes }}" alt="Card image of product {{object.title}}">
                 <div class="card-body">
                   <h5 class="card-title">{{ object.title }}</h5>
                   <h6 class="card-price">{{ object.price }}</h6>
