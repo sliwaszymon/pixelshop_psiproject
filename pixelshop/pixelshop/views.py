@@ -48,3 +48,6 @@ class ShopView(ListView):
 class ProductView(DetailView):
     template_name = 'product.html'
     model = PixelArt
+
+class RegulationsView(TemplateView):
+    template_name = 'regulations.html'
