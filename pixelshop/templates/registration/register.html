@@ -10,20 +10,20 @@
                   {% csrf_token %}
                     <div class="mb-3">
                       <label for="id_email" class="form-label">Adres email:</label> 
-                      <input type="email" class="form-control" name="email" maxlength="254" required="required" id="id_email">
+                      <input type="email" class="form-control" name="email" maxlength="254" id="id_email" required>
                     </div>
                     <div class="mb-3">
                       <label for="id_username" class="form-label">Nazwa użytkownika:</label> 
-                      <input type="text" class="form-control" name="username" maxlength="150" autofocus="" required="required" id="id_username"> 
+                      <input type="text" class="form-control" name="username" maxlength="150" autofocus="" id="id_username" required> 
                     </div>
                     <div class="mb-3">
                       <label for="id_password1" class="form-label">Hasło:</label> 
-                      <input type="password" class="form-control" name="password1" autocomplete="new-password" required="required" id="id_password1"> 
+                      <input type="password" class="form-control" name="password1" autocomplete="new-password" id="id_password1" required> 
                       <span class="helptext"></span>
                     </div>
                     <div class="mb-3">
                       <label for="id_password2" class="form-label">Powtórz hasło:</label> 
-                      <input type="password" class="form-control" name="password2" autocomplete="new-password" required="required" id="id_password2"> 
+                      <input type="password" class="form-control" name="password2" autocomplete="new-password" id="id_password2" required> 
                     </div>
                     <div class="mb-3">
                       <label for="id_first_name" class="form-label">Imie:</label> 
@@ -34,7 +34,7 @@
                       <input type="text" class="form-control" name="last_name" maxlength="150" id="id_last_name">
                     </div>
                     <div class="mb-3 form-check form-switch">
-                      <input type="checkbox" class="form-check-input" id="regulations" required="required">
+                      <input type="checkbox" class="form-check-input" id="regulations" required>
                       <label for="regulations" class="form-check-label">Potwierdzam, że zapoznałem się z <a href="{% url 'pixelshop:regulations' %}" target="_blank">regulaminem</a>.</label>
                     </div>
                   <input type="submit" class="btn btn-primary" value="Zarejestruj"> <!-- disabled -->
