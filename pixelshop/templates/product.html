@@ -4,10 +4,10 @@
     {% include 'navbar.html' %}
     <div class="container p-3 mt-3 mb-5 shadow-sm bg-white">
         <div class="row">
-            <div class="col-6">
+            <div class="col-xs-10 col-sm-8 col-lg-6 col-md-6 col-xl-6">
                 <img class="border border-dark" src="{{ object.file|redirect_slashes }}" width="400" height="400" alt="Card image of product {{ object.title }}">
             </div>
-            <div class="col-6">
+            <div class="col-xs-2 col-sm-4 col-lg-6 col-md-6 col-xl-6">
                 <div class="row mt-5">
                     <span><b>Nazwa:</b> {{ object.title }}</span>
                 </div>
