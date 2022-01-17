@@ -9,12 +9,14 @@
         {% for object in object_list %}
           <div class="col-6 col-sm-6 col-lg-4 col-md-6 col-xl-3">
               <div class="card">
-                <img class="card-img-top" src="{{ object.file|redirect_slashes }}" alt="Card image of product {{object.title}}">
+                <a href="{% url 'pixelshop:product' pk=object.pk %}">
+                  <img class="card-img-top" src="{{ object.file|redirect_slashes }}" alt="Card image of product {{ object.title }}">
+                </a>
                 <div class="card-body">
                   <h5 class="card-title">{{ object.title }}</h5>
-                  <h6 class="card-price">{{ object.price }}</h6>
+                  <h6 class="card-price">{{ object.price.amount }} {{ object.price.currency }}</h6>
                   <p class="card-text">{{ object.desc }}</p>
-                  <a href="#" class="btn btn-primary">KUP</a>
+                  <!-- <a href="#" class="btn btn-primary">KUP</a> -->
                 </div>
               </div>
             </div>
