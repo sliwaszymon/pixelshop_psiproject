@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load simple_tags %}
+{% block content %}
+    {% include 'navbar.html' %}
+    <div class="container p-3 mt-3 mb-5 shadow-sm bg-white">
+        <div class="row">
+            <div class="col-6">
+                <img class="border border-dark" src="{{ object.file|redirect_slashes }}" width="400" height="400" alt="Card image of product {{ object.title }}">
+            </div>
+            <div class="col-6">
+                <div class="row mt-5">
+                    <span><b>Nazwa:</b> {{ object.title }}</span>
+                </div>
+                <div class="row">
+                    <span><b>Opis:</b> {{ object.desc }}</span>
+                </div>
+                <div class="row">
+                    <span><b>Cena:</b> {{ object.price.amount }} {{ object.price.currency }}</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-2">
+                        <a href="#" class="btn btn-primary">KUP</a>
+                    </div>                    
+                    <div class="col-10"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
