@@ -2,6 +2,7 @@
 import os
 import hashlib
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -70,7 +71,7 @@ class Order(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     pixelart = models.ForeignKey(PixelArt, on_delete=models.PROTECT)
-    date_purchased = models.DateTimeField()
+    date_purchased = models.DateTimeField(default=now, editable=False)
     status = models.CharField(
         max_length=20,
         choices=OrderStatus.choices,
@@ -81,7 +82,6 @@ class Order(models.Model):
         verbose_name = _('order')
         verbose_name_plural = _('orders')
     
-
     def __str__(self):
         return f"{self.pixelart} - {self.user} - {self.date_purchased} - {self.status}"
 

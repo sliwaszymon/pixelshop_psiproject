@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DetailView, ListView
 from django.views.generic.edit import UpdateView
-from .models import PixelArt, User
+from .models import PixelArt, User, Order
 from .forms import RegisterForm
+from django.http import JsonResponse
+import json
 
 
 class HomePageView(TemplateView):
@@ -51,3 +53,14 @@ class ProductView(DetailView):
 
 class RegulationsView(TemplateView):
     template_name = 'regulations.html'
+
+def orderCompleteView(request):
+    paymentjson = json.loads(request.body)
+    pixelart = PixelArt.objects.get(pk=paymentjson['productId'])
+    buyer = User.objects.get(pk=paymentjson['buyerId'])
+    Order.objects.create(
+        user=buyer,
+        pixelart=pixelart,
+        status='payment_received'
+    )
+    return JsonResponse('Płatność zakończona pomyślnie!', safe=False)
