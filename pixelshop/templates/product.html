@@ -4,10 +4,10 @@
     {% include 'navbar.html' %}
     <div class="container p-3 mt-3 mb-5 shadow-sm bg-white">
         <div class="row">
-            <div class="col-xs-10 col-sm-8 col-lg-6 col-md-6 col-xl-6">
+            <div class="col-4">
                 <img class="border border-dark" src="{{ object.file|redirect_slashes }}" width="400" height="400" alt="Card image of product {{ object.title }}">
             </div>
-            <div class="col-xs-2 col-sm-4 col-lg-6 col-md-6 col-xl-6">
+            <div class="col-7">
                 <div class="row mt-5">
                     <span><b>Nazwa:</b> {{ object.title }}</span>
                 </div>
@@ -18,12 +18,63 @@
                     <span><b>Cena:</b> {{ object.price.amount }} {{ object.price.currency }}</span>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-2">
-                        <a href="#" class="btn btn-primary">KUP</a>
-                    </div>                    
-                    <div class="col-10"></div>
+                    {% if request.user.is_authenticated %}
+                        <div id="paypal-button-container"></div>
+                    {% else %}
+                        <a href="{% url 'pixelshop:login' %}" class="btn btn-danger">Aby dokonać zakupu musisz się zalogować!</a>
+                    {% endif %}
                 </div>
             </div>
+            <div class="col-1"></div>
         </div>
     </div>
+    <script src="https://www.paypal.com/sdk/js?client-id=Aa9TEsqgnE--lM0JLwqAdlIEj4wtvvvrJJ8346MNaaydTGVgEvRwV8Mn4qiE5wT9pg13apkVYGUtoo31&currency={{ object.price.currency }}&disable-funding=credit"></script>
+    <script>
+        function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+	 	var total = '{{ object.price.amount }}'
+	 	var productId = '{{ object.pk }}'
+        var buyerId = '{{ request.user.pk }}'
+	 	function completeOrder(){
+	 		var url = "{% url 'pixelshop:order-complete' %}"
+	 		fetch(url, {
+	 			method:'POST',
+	 			headers:{
+	 				'Content-type':'application/json',
+	 				'X-CSRFToken':csrftoken,
+	 			},
+	 			body:JSON.stringify({'productId':productId, 'buyerId':buyerId})
+	 		})
+	 	}
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{ 
+                        amount: {
+                            value: total
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    completeOrder()
+                    alert('Transakcja dokonana przez ' + details.payer.name.given_name + '.');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 {% endblock content %}
