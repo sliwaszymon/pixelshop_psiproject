@@ -1,10 +1,59 @@
 {% extends 'base.html' %}
+{% load static simple_tags %}
 {% block content %}
     {% include 'navbar.html' %}
-    <div class="container shadow-sm p-3 mb-5 mt-5 bg-white">
-        <div class="row">
-            <div class="col-12">
-                
+    <link rel="stylesheet" type="text/css" href="{% static '/website/css/aboutus.css' %}">
+    <div class="content-about-us">
+        <div class="container-fluid p-3 mb-5">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <h2 class="title-about">O NAS</h2>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-6 ml-5 mr-5">
+                    <div class="card mt-5" onclick="location.href = 'https://www.linkedin.com/in/maciej-szymborski-030070208/'">
+                            <img class="card-img-top mt-5" src="{% static 'images/zdj_MS.jpg' %}" alt="szczur papiez">
+                            <div class="card-body">
+                                <h3 class="card-name mb-5">Maciej Szymborski</h3>
+                                <h4 class="card-job-title mt-5 mb-5">Java Software Developer</h4>
+                                <p class="card-desc mt-5 mb-5">Moim pierwszym językiem programowania który zachęcił mnie do programowania był Python lecz po czasie zainteresowała mnie Java. 
+                                    Swoją przygodę z bardziej komerycyjnym programowaniem rozpocząłem z frameworkiem Spring. 
+                                    W przyszłości planuje zostać Fullstack developerem rozwiązań webowych.</p>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-6 ml-5 mr-5">
+                    <div class="card mt-5" onclick="location.href = 'https://www.linkedin.com/in/szymon-śliwa-608255210/'">
+                            <img class="card-img-top mt-5" src="{% static 'images/zdj_SS.jpg' %}" alt="szczur papiez">
+                            <div class="card-body">
+                                <h3 class="card-name mb-5">Szymon Śliwa</h3>
+                                <h4 class="card-job-title mt-5 mb-5">Python Software Developer</h4>
+                                <p class="card-desc mt-5 mb-5">Zabawną sprawą jest to, że nigdy nie przepadałem za Pythonem. Zajęcia z wizualizacji danych sprawiały mi trudności. 
+                                    Polubiłem ten język dopiero, kiedy miałem potrzebę automatyzacji wielu czynności. Hobbystycznie zacząłem bawić się w webscraping. Przygodę z 
+                                    Django zacząłem na stażu podczas 2. roku studiów. Z racji ukończenia technikum informatycznego i pomyślnego zaliczenia egzaminów zawodowych 
+                                    byłem obeznany z językiem znaczników HTML, php i językiem baz danych SQL. W przyszłości zamierzam rozszerzyć swoją wiedzę do stopnia, w którym 
+                                    będę mógł nazywać się Fullstack developerem.
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <h2 class="contact-title mt-5 mb-5">KONTAKT</h2>
+                    <div class="card mt-5 mb-5">
+                        <div class="card-body">
+                            <h3>Email: pixelshopsupport@pixelshop.com</h3>
+                            <hr>
+                            <h3>Telefon: +48 xxx xxx xxx</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3"></div>
             </div>
         </div>
     </div>

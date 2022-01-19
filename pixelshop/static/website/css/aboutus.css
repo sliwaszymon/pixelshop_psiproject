@@ -1,0 +1,33 @@
+.content-about-us{
+    margin-left: 83px;
+    transition: all 0.5s ease;
+}
+.content-about-us.activenav{
+    margin-left: 245px;
+}
+.title-about{
+    text-align: center;
+    text-shadow: 2px 2px grey;
+}
+.card{
+    background-color: #11101d;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 1s ease;
+}
+.card:hover{
+    background-color: #212126;
+}
+.card-img-top{
+    width: 50%;
+    height: 50%;
+    align-self: center;
+}
+.card-body{
+    text-align: center;
+}
+.contact-title{
+    text-align: center;
+    text-shadow: 2px 2px grey;
+}
