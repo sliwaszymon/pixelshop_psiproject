@@ -35,10 +35,6 @@ def registerView(request):
     context = {'form': form}
     return render(request, template_name, context)
 
-
-class ContactView(TemplateView):
-    template_name = 'contact.html'
-
 class AboutusView(TemplateView):
     template_name = 'aboutus.html'
 
