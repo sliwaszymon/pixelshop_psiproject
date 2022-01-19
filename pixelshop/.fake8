@@ -1,12 +1,6 @@
 [flake8]
 max-line-length = 99
-extend-ignore=
-    E402,
-    E501,
-    W503,
-extend-exclude=
-    .venv,
-    migrations,
-    manage.py,
-
-# vi: ft=dosini
+exclude =   migrations,
+            settings.py,
+            manage.py,
+            __pycache__,

@@ -1,5 +1,12 @@
+"""Admin file."""
+
+# Django
 from django.contrib import admin
-from pixelshop.models import User, Order, PixelArt
+
+# Project
+from pixelshop.models import Order
+from pixelshop.models import PixelArt
+from pixelshop.models import User
 
 # Register your models here.
 admin.site.register(User)
