@@ -1,0 +1,1 @@
+"""PixelShop migrations init file."""
