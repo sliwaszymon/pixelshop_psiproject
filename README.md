@@ -41,6 +41,6 @@ Gotowy projekt ma zapewnić możliwość zakupu stworzonych przez nas pixelartó
 ```py manage.py runserver```
 
 # Dane do kont poglądowych:
-```[USER / KLIENT] login:Ziomek123 hasło:StandardUser123!```
-```[STAFF MEMBER / PRACOWNIK] login:pracusiek3371 hasło:SuperHaslo321!```
-```[ADMIN / PROGRAMIST LUB OSOBA Z ABSOLUTNYM DOSTĘPEM] login:admin hasło:admin1```
+1. ```[USER / KLIENT] login:Ziomek123 hasło:StandardUser123!```
+2. ```[STAFF MEMBER / PRACOWNIK] login:pracusiek3371 hasło:SuperHaslo321!```
+3. ```[ADMIN / PROGRAMIST LUB OSOBA Z ABSOLUTNYM DOSTĘPEM] login:admin hasło:admin1```
