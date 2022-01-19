@@ -5,7 +5,7 @@
 .content-about-us.activenav{
     margin-left: 245px;
 }
-.title_about{
+.title-about{
     text-align: center;
     text-shadow: 2px 2px grey;
 }
@@ -26,4 +26,8 @@
 }
 .card-body{
     text-align: center;
+}
+.contact-title{
+    text-align: center;
+    text-shadow: 2px 2px grey;
 }
