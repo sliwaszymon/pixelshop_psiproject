@@ -3,6 +3,9 @@
 # Standard Library
 from datetime import datetime as dt
 
+# Django
+from django.contrib.auth.hashers import make_password
+
 # 3rd-party
 from profanity_check import predict as profanity_predict
 from pytz import UTC
@@ -66,6 +69,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                 'Your email host is not supported.',
             )
         return value
+    
+    def validate_password(self, value):
+        """Password validate function."""
+        if len(value) < 8:
+            raise serializers.ValidationError(
+                'Password must must have at least 8 digits.',
+            )
+        return make_password(value)
 
     class Meta:
         """Meta class."""
