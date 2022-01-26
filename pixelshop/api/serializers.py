@@ -131,6 +131,7 @@ class PixelArtSerializer(serializers.HyperlinkedModelSerializer):
             'id',
             'title',
             'desc',
+            'file',
             'price',
             'certificate_id',
             ]
