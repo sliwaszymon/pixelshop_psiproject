@@ -51,7 +51,10 @@ class PixelArt(models.Model):
         default_currency='PLN',
         default=0.0,
         )
-    certificate_id = models.CharField(max_length=128)
+    certificate_id = models.CharField(
+        max_length=128,
+        default='a',
+        )
 
     class Meta:
         """Meta class."""
