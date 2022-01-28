@@ -2,8 +2,6 @@
 
 # Django
 from django.utils.http import urlencode
-from django import urls
-from django.test import TestCase
 
 # 3rd-party
 from rest_framework.test import APITestCase, APIClient
@@ -12,7 +10,6 @@ from rest_framework import status
 
 # Project
 from pixelshop.models import User, PixelArt
-import api.views
 
 
 class UserTests(APITestCase):
